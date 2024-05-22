@@ -17,7 +17,7 @@ def inputPlayerLetter():
     letter = ''
     while not (letter == 'x' or letter == 'o'):
         print('Which letter would you like to be? x or o?')
-        letter = input().upper()
+        letter = input().lower()
     if letter == 'x':
         return ['x', 'o']
     else:
@@ -85,6 +85,12 @@ def getComputerMove(board, computerLetter):
         copy = getBoardCopy(board)
         if isSpaceFree(copy, i):
             makeMove(copy, computerLetter, i)
+            if isWinner(copy, computerLetter):
+                return i
+    for i in range(1,10):
+        copy = getBoardCopy(board)
+        if isSpaceFree(copy, i):
+            makeMove(copy, playerLetter, i)
             if isWinner(copy, playerLetter):
                 return i
 
@@ -92,7 +98,7 @@ def getComputerMove(board, computerLetter):
     if move != None:
         return move
 
-    if isSpaceFree(5):
+    if isSpaceFree(board, 5):
         return 5
 
     return chooseRandomMoveFromList(board, [2, 4, 6, 8])
