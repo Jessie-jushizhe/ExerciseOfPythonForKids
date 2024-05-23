@@ -70,9 +70,9 @@ def chooseRandomMoveFromList(board, moveList):
         if isSpaceFree(board, i):
             possibleMoves.append(i)
 
-        if len(possibleMoves) != 0:
+    if len(possibleMoves) != 0:
             return random.choice(possibleMoves)
-        else:
+    else:
             return None
 
 def getComputerMove(board, computerLetter):
